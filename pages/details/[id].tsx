@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { Detail } from "../../componets/Detail/Detail";
+import { Detail } from "../../componets/Detail";
 import { PageLayout } from "../../componets/common";
 
 export default function Details() {
