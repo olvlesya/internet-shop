@@ -19,10 +19,6 @@ const FindGoods = styled.input`
   box-sizing: border-box;
 `;
 
-const FindWrapper = styled.div`
-  display: flex;
-`;
-
 const Find = styled.header`
   display: flex;
   flex-direction: column;
@@ -33,10 +29,10 @@ export const SearchPanel: React.FunctionComponent = () => {
   return (
     <Find>
       <DropdownButton />
-      <FindWrapper>
+      <section>
         <FindGoods placeholder="find goods"></FindGoods>
         <FindButton>Search</FindButton>
-      </FindWrapper>
+      </section>
     </Find>
   );
 };
