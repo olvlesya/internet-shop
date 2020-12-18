@@ -3,11 +3,12 @@ import styled from "styled-components";
 export const DetailImage = styled.img`
   max-width: 400px;
   max-height: 400px;
-  transition: 0.5s;
+  transition: transform 500ms;
   border: 1px solid #00000033;
   background-color: #fff;
+  cursor: pointer;
+
   :hover {
-    cursor: pointer;
     transform: scale(1.05);
   }
 `;

@@ -5,8 +5,10 @@ import {
   CardWrapper,
   MoreInfo,
   MoreInfoButton,
+  CardImageWrapper,
   Price,
 } from "./styledComponents";
+import { MaxLinesText } from "../common/MaxLinesText";
 import { item } from "../../types/item";
 
 type Props = item;
@@ -14,7 +16,6 @@ type Props = item;
 export const Card: React.FunctionComponent<Props> = ({
   id,
   title,
-  category,
   price,
   image,
   description,
@@ -23,14 +24,17 @@ export const Card: React.FunctionComponent<Props> = ({
 
   return (
     <CardWrapper>
-      <section>
-        <CardImage src={image} />
-      </section>
+      <CardImageWrapper>
+        <CardImage src={image} alt={title} />
+      </CardImageWrapper>
       <section>{title}</section>
-      <section>{description}</section>
+      <section>
+        <MaxLinesText lines={3}>{description}</MaxLinesText>
+      </section>
       <Price>${price}</Price>
       <MoreInfo>
         <MoreInfoButton
+          role="link"
           onClick={() => {
             router.push(`/details/${id}`);
           }}

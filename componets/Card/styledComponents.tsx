@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Button } from "../common/Button";
 
 const buttonHeight = 50;
+const imageSize = 200;
 
 export const CardWrapper = styled.article`
   text-align: center;
@@ -10,9 +11,16 @@ export const CardWrapper = styled.article`
   background-color: #fff;
 `;
 
+export const CardImageWrapper = styled.section`
+  height: ${imageSize}px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const CardImage = styled.img`
-  max-width: 200px;
-  max-height: 200px;
+  max-width: ${imageSize}px;
+  max-height: ${imageSize}px;
 `;
 
 export const MoreInfo = styled.section`
