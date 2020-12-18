@@ -9,7 +9,7 @@ const SideWrapper = styled.aside`
 `;
 
 const SideLink = styled.a`
-  color: #ffc67f;
+  color: #ff7733;
   text-decoration: none;
   font-size: 18px;
 `;

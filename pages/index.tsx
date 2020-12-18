@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Card } from "../componets/Card";
 import { PageLayout } from "../componets/common";
+import { item } from "../types/item";
 
 const Items = styled.main`
   display: grid;
@@ -21,14 +22,22 @@ const Items = styled.main`
   }
 `;
 
-const items = [...new Array(13)].map((_c, ind) => (
-  <Card key={ind} id={ind} price={1000} />
-));
-
 export default function Home() {
+  const [items, setItems] = useState<item[]>([]);
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products?limit=20")
+      .then((res) => res.json() as Promise<item[]>)
+      .then((json) => setItems(json));
+  }, []);
+
   return (
     <PageLayout>
-      <Items>{items}</Items>
+      <Items>
+        {items.map((item) => (
+          <Card key={item.id} {...item} />
+        ))}
+      </Items>
     </PageLayout>
   );
 }

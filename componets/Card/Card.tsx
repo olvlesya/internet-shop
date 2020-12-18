@@ -7,25 +7,28 @@ import {
   MoreInfoButton,
   Price,
 } from "./styledComponents";
+import { item } from "../../types/item";
 
-type Props = {
-  id: number;
-  price: number;
-};
+type Props = item;
 
-export const Card: React.FunctionComponent<Props> = ({ id, price }) => {
+export const Card: React.FunctionComponent<Props> = ({
+  id,
+  title,
+  category,
+  price,
+  image,
+  description,
+}) => {
   const router = useRouter();
 
   return (
     <CardWrapper>
       <section>
-        <CardImage src="https://2.bp.blogspot.com/-TX7GCa1Br_s/U5Ve9OyP-9I/AAAAAAAABiw/ACF-nTxmWVw/s1600/6780154.png" />
+        <CardImage src={image} />
       </section>
-      <section>title</section>
-      <section>description</section>
-      <Price>
-        <p>{price}</p>
-      </Price>
+      <section>{title}</section>
+      <section>{description}</section>
+      <Price>${price}</Price>
       <MoreInfo>
         <MoreInfoButton
           onClick={() => {
