@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import { store } from "../.././types/store";
+import { sortAsc, sortDesc } from "../../store";
 
 const DropdownControl = styled.select`
   width: 540px;
@@ -9,21 +12,25 @@ const DropdownControl = styled.select`
   box-sizing: border-box;
 `;
 
-type Props = {};
-
-export const DropdownButton: React.FunctionComponent<Props> = () => {
-  const [value, setValue] = useState("1");
+export const DropdownButton: React.FunctionComponent = () => {
+  const sort = useSelector<store, store["sort"]>((state) => state.sort);
+  const dispatch = useDispatch();
 
   return (
     <section>
       <DropdownControl
-        value={value}
+        value={sort}
         onChange={(e) => {
-          setValue(e.target.value);
+          if (e.target.value === "asc") {
+            dispatch(sortAsc());
+          }
+          if (e.target.value === "desc") {
+            dispatch(sortDesc());
+          }
         }}
       >
-        <option value="1">Sort from low to high</option>
-        <option value="2">Sort from high to low</option>
+        <option value="asc">Sort from low to high</option>
+        <option value="desc">Sort from high to low</option>
       </DropdownControl>
     </section>
   );

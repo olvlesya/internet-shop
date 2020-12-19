@@ -15,7 +15,7 @@ const SideLink = styled.a`
 `;
 
 const SideTitle = styled.h1`
-  font-size: 30px;
+  font-size: 1.5rem;
   letter-spacing: 0.3px;
 `;
 

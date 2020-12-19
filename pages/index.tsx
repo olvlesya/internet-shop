@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Spinner } from "../componets/common/Spinner";
 import styled from "styled-components";
 import { Card } from "../componets/Card";
 import { PageLayout } from "../componets/common";
 import { item } from "../types/item";
+import { store } from "../types/store";
+import { itemsInit, startLoading, stopLoading } from "../store";
 
 const Items = styled.main`
   display: grid;
@@ -24,17 +27,24 @@ const Items = styled.main`
 `;
 
 export default function Home() {
-  const [items, setItems] = useState<item[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const items = useSelector<store, store["items"]>((state) => state.items);
+  const isLoading = useSelector<store, store["isLoading"]>(
+    (state) => state.isLoading
+  );
+  const sort = useSelector<store, store["sort"]>((state) => state.sort);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products?limit=20")
+    dispatch(startLoading());
+    dispatch(itemsInit([]));
+
+    fetch(`https://fakestoreapi.com/products?limit=8&sort=${sort}`)
       .then((res) => res.json() as Promise<item[]>)
       .then((json) => {
-        setIsLoading(false);
-        setItems(json);
+        dispatch(stopLoading());
+        dispatch(itemsInit(json));
       });
-  }, []);
+  }, [sort]);
 
   return (
     <PageLayout>
