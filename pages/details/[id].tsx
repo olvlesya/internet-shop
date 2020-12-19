@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { Spinner } from "../../componets/common/Spinner";
 import { Detail } from "../../componets/Detail";
 import { PageLayout } from "../../componets/common";
 import { item as itemType } from "../../types/item";
@@ -15,5 +16,5 @@ export default function Details() {
       .then((json) => setItem(json));
   }, []);
 
-  return <PageLayout>{item && <Detail {...item} />}</PageLayout>;
+  return <PageLayout>{item ? <Detail {...item} /> : <Spinner />}</PageLayout>;
 }

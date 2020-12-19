@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Spinner } from "../componets/common/Spinner";
 import styled from "styled-components";
 import { Card } from "../componets/Card";
 import { PageLayout } from "../componets/common";
@@ -24,11 +25,15 @@ const Items = styled.main`
 
 export default function Home() {
   const [items, setItems] = useState<item[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products?limit=20")
       .then((res) => res.json() as Promise<item[]>)
-      .then((json) => setItems(json));
+      .then((json) => {
+        setIsLoading(false);
+        setItems(json);
+      });
   }, []);
 
   return (
@@ -38,6 +43,7 @@ export default function Home() {
           <Card key={item.id} {...item} />
         ))}
       </Items>
+      {isLoading && <Spinner />}
     </PageLayout>
   );
 }
