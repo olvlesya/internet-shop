@@ -11,10 +11,18 @@ export default function Details() {
   const [item, setItem] = useState<itemType>();
 
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${id}`)
-      .then((res) => res.json() as Promise<itemType>)
-      .then((json) => setItem(json));
-  }, []);
+    if (id) {
+      fetch(`https://fakestoreapi.com/products/${id}`)
+        .then((res) => res.json() as Promise<itemType>)
+        .then((json) => {
+          if (json === null) {
+            router.push(`/404`);
+          } else {
+            setItem(json);
+          }
+        });
+    }
+  }, [id]);
 
   return <PageLayout>{item ? <Detail {...item} /> : <Spinner />}</PageLayout>;
 }

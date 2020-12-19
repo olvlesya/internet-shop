@@ -14,7 +14,6 @@ const FindGoods = styled.input`
   width: ${searchWidth}px;
   height: 30px;
   border: 1px solid #1f1d1d;
-  margin-bottom: 20px;
   padding: 2px 2px 1px 6px;
   box-sizing: border-box;
 `;
@@ -23,6 +22,8 @@ const Find = styled.header`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
+  height: 100px;
 `;
 
 export const SearchPanel: React.FunctionComponent = () => {

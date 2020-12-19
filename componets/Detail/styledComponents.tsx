@@ -33,7 +33,7 @@ export const DetailInformation = styled.section`
 
 export const DetailPrice = styled.h2`
   font-family: "NotoSansJP-Regular";
-  font-size: 30px;
+  font-size: 1rem;
   color: #0a0d0f;
   letter-spacing: 0.3px;
 `;

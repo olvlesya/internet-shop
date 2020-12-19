@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const Dropdown = styled.section`
-  height: 55px;
-`;
-
 const DropdownControl = styled.select`
   width: 540px;
   height: 30px;
@@ -19,7 +15,7 @@ export const DropdownButton: React.FunctionComponent<Props> = () => {
   const [value, setValue] = useState("1");
 
   return (
-    <Dropdown>
+    <section>
       <DropdownControl
         value={value}
         onChange={(e) => {
@@ -29,6 +25,6 @@ export const DropdownButton: React.FunctionComponent<Props> = () => {
         <option value="1">Sort from low to high</option>
         <option value="2">Sort from high to low</option>
       </DropdownControl>
-    </Dropdown>
+    </section>
   );
 };
