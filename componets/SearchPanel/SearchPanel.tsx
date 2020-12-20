@@ -1,36 +1,25 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+import styled from "styled-components";
 import { store } from "../../types/store";
 import { searchItems } from "../../store";
+import { ThemeLink } from "../common/ThemeLink";
 import { DropdownButton } from "./DropdownButton";
-import { Button } from "./../common/Button";
+import {
+  ControlWrapper,
+  Find,
+  FindButton,
+  FindGoods,
+  HomePageLink,
+  SideTitle,
+  Controls,
+  CategoryLinks,
+  Header,
+} from "./styledComponents";
+import { categories } from "../../routes";
 
-const FindButton = styled(Button)`
-  width: 75px;
-`;
-
-const FindGoods = styled.input`
-  flex-grow: 1;
-  height: 30px;
-  border: 1px solid #1f1d1d;
-  padding: 2px 2px 1px 6px;
-  box-sizing: border-box;
-`;
-
-const Find = styled.header`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  height: 100px;
-  margin-bottom: 20px;
-`;
-
-const ControlWrapper = styled.section`
-  width: 80%;
-  display: flex;
-  max-width: 540px;
+const CategoryLink = styled(ThemeLink)`
+  margin: 0 10px 10px;
 `;
 
 export const SearchPanel: React.FunctionComponent = () => {
@@ -41,35 +30,49 @@ export const SearchPanel: React.FunctionComponent = () => {
   const dispatch = useDispatch();
 
   return (
-    <Find>
-      <ControlWrapper>
-        <FindGoods
-          placeholder="find goods"
-          value={value}
-          onChange={(e) => {
-            setValue(e.target.value);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === "Escape") {
-              dispatch(searchItems(""));
-              setValue("");
-            }
-            if (e.key === "Enter") {
-              dispatch(searchItems(value));
-            }
-          }}
-        ></FindGoods>
-        <FindButton
-          onClick={() => {
-            dispatch(searchItems(value));
-          }}
-        >
-          Search
-        </FindButton>
-      </ControlWrapper>
-      <ControlWrapper>
-        <DropdownButton />
-      </ControlWrapper>
-    </Find>
+    <Header>
+      <Find>
+        <SideTitle>
+          <HomePageLink href="/">All goods</HomePageLink>
+        </SideTitle>
+        <Controls>
+          <ControlWrapper>
+            <FindGoods
+              placeholder="find goods"
+              value={value}
+              onChange={(e) => {
+                setValue(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Escape") {
+                  dispatch(searchItems(""));
+                  setValue("");
+                }
+                if (e.key === "Enter") {
+                  dispatch(searchItems(value));
+                }
+              }}
+            ></FindGoods>
+            <FindButton
+              onClick={() => {
+                dispatch(searchItems(value));
+              }}
+            >
+              Search
+            </FindButton>
+          </ControlWrapper>
+          <ControlWrapper>
+            <DropdownButton />
+          </ControlWrapper>
+        </Controls>
+      </Find>
+      <CategoryLinks>
+        {categories.map((category, id) => (
+          <CategoryLink key={id} href={category.route}>
+            {category.title}
+          </CategoryLink>
+        ))}
+      </CategoryLinks>
+    </Header>
   );
 };

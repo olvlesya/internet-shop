@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { SideLink } from "../common/Link";
+import { ThemeLink } from "../common/ThemeLink";
+import { categories } from "../../routes";
 
 const SideWrapper = styled.aside`
   display: flex;
@@ -8,20 +9,14 @@ const SideWrapper = styled.aside`
   flex: start;
   width: 200px;
   margin-left: 50px;
-`;
 
-const SideTitle = styled.h2`
-  font-size: 2rem;
-  letter-spacing: 0.3px;
-`;
-
-const HomePageLink = styled.a`
-  text-decoration: none;
-  color: #292929;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const SideCategories = styled.h2`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 `;
 const SideLinkSection = styled.div`
   display: flex;
@@ -33,16 +28,13 @@ const SideLinkSection = styled.div`
 export const SideMenu: React.FunctionComponent = () => {
   return (
     <SideWrapper>
-      <SideTitle>
-        <HomePageLink href="/">All goods</HomePageLink>
-      </SideTitle>
-
       <SideCategories>Categories</SideCategories>
       <SideLinkSection>
-        <SideLink href="category/men clothing">Men clothing</SideLink>
-        <SideLink href="category/women clothing">Women clothing</SideLink>
-        <SideLink href="/category/jewelery">Jewelery</SideLink>
-        <SideLink href="/category/electronics">Electronics</SideLink>
+        {categories.map((category, id) => (
+          <ThemeLink key={id} href={category.route}>
+            {category.title}
+          </ThemeLink>
+        ))}
       </SideLinkSection>
     </SideWrapper>
   );

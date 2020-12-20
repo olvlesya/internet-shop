@@ -17,12 +17,12 @@ const MainPage = styled.div`
 
 export const PageLayout: React.FunctionComponent = ({ children }) => {
   return (
-    <MainPage>
-      <SideMenu />
-      <Content>
-        <SearchPanel />
-        {children}
-      </Content>
-    </MainPage>
+    <section>
+      <SearchPanel />
+      <MainPage>
+        <SideMenu />
+        <Content>{children}</Content>
+      </MainPage>
+    </section>
   );
 };
