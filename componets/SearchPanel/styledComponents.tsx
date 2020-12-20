@@ -46,6 +46,7 @@ export const SideTitle = styled.h2`
 export const HomePageLink = styled.a`
   text-decoration: none;
   color: #292929;
+  cursor: pointer;
 `;
 
 export const CategoryLinks = styled.section`
