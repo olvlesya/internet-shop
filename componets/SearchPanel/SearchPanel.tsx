@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { store } from "../../types/store";
+import { searchItems } from "../../store";
 import { DropdownButton } from "./DropdownButton";
 import { Button } from "./../common/Button";
 
@@ -27,13 +30,40 @@ const Find = styled.header`
 `;
 
 export const SearchPanel: React.FunctionComponent = () => {
+  const searchQuery = useSelector<store, store["searchQuery"]>(
+    (state) => state.searchQuery
+  );
+  const [value, setValue] = useState(searchQuery);
+  const dispatch = useDispatch();
+
   return (
     <Find>
-      <DropdownButton />
       <section>
-        <FindGoods placeholder="find goods"></FindGoods>
-        <FindButton>Search</FindButton>
+        <FindGoods
+          placeholder="find goods"
+          value={value}
+          onChange={(e) => {
+            setValue(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") {
+              dispatch(searchItems(""));
+              setValue("");
+            }
+            if (e.key === "Enter") {
+              dispatch(searchItems(value));
+            }
+          }}
+        ></FindGoods>
+        <FindButton
+          onClick={() => {
+            dispatch(searchItems(value));
+          }}
+        >
+          Search
+        </FindButton>
       </section>
+      <DropdownButton />
     </Find>
   );
 };

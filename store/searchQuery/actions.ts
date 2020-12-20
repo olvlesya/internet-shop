@@ -2,7 +2,7 @@ export type searchQueryType = {
   type: "search/start";
   payload: string;
 };
-export const searchItems = (title: string): searchQueryType => ({
+export const searchItems = (query: string): searchQueryType => ({
   type: "search/start",
-  payload: title,
+  payload: query,
 });

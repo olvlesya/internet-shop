@@ -32,19 +32,38 @@ export default function Home() {
     (state) => state.isLoading
   );
   const sort = useSelector<store, store["sort"]>((state) => state.sort);
+  const searchQuery = useSelector<store, store["searchQuery"]>(
+    (state) => state.searchQuery
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(startLoading());
     dispatch(itemsInit([]));
 
-    fetch(`https://fakestoreapi.com/products?limit=8&sort=${sort}`)
+    const limit = searchQuery.trim() === "" ? "limit=8" : "";
+
+    fetch(`https://fakestoreapi.com/products?${limit}&sort=${sort}`)
       .then((res) => res.json() as Promise<item[]>)
       .then((json) => {
         dispatch(stopLoading());
-        dispatch(itemsInit(json));
+
+        if (searchQuery.trim() !== "") {
+          const regExp = new RegExp(searchQuery, "i");
+          dispatch(
+            itemsInit(
+              // FIXME: fakestoreapi doesn't support filtering
+              json.filter(
+                (item) =>
+                  regExp.test(item.title) || regExp.test(item.description)
+              )
+            )
+          );
+        } else {
+          dispatch(itemsInit(json));
+        }
       });
-  }, [sort]);
+  }, [sort, searchQuery]);
 
   return (
     <PageLayout>

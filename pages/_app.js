@@ -1,5 +1,6 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 import {
   itemReducer,
   itemsReducer,
@@ -16,7 +17,8 @@ const store = createStore(
     isLoading: loadingReducer,
     searchQuery: searchQueryReducer,
     sort: sortReducer,
-  })
+  }),
+  applyMiddleware(thunk)
 );
 
 function MyApp({ Component, pageProps }) {
