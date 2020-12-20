@@ -16,7 +16,10 @@ type Props = {
   href: string;
 };
 
-export const ThemeLink: React.FunctionComponent<Props> = ({ href }) => {
+export const ThemeLink: React.FunctionComponent<Props> = ({
+  href,
+  children,
+}) => {
   const router = useRouter();
   return (
     <StyledLink
@@ -24,6 +27,8 @@ export const ThemeLink: React.FunctionComponent<Props> = ({ href }) => {
         e.preventDefault();
         router.push(href);
       }}
-    />
+    >
+      {children}
+    </StyledLink>
   );
 };
