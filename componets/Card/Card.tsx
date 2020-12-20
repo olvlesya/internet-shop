@@ -7,6 +7,8 @@ import {
   MoreInfoButton,
   CardImageWrapper,
   Price,
+  ItemTitle,
+  ItemDescription,
 } from "./styledComponents";
 import { MaxLinesText } from "../common/MaxLinesText";
 import { item } from "../../types/item";
@@ -27,10 +29,10 @@ export const Card: React.FunctionComponent<Props> = ({
       <CardImageWrapper>
         <CardImage src={image} alt={title} />
       </CardImageWrapper>
-      <section>{title}</section>
-      <section>
+      <ItemTitle>{title}</ItemTitle>
+      <ItemDescription>
         <MaxLinesText lines={3}>{description}</MaxLinesText>
-      </section>
+      </ItemDescription>
       <Price>${price}</Price>
       <MoreInfo>
         <MoreInfoButton

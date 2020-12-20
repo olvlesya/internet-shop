@@ -6,15 +6,12 @@ import { searchItems } from "../../store";
 import { DropdownButton } from "./DropdownButton";
 import { Button } from "./../common/Button";
 
-const buttonWidth = 75;
-const searchWidth = 470;
-
 const FindButton = styled(Button)`
-  width: ${buttonWidth}px;
+  width: 75px;
 `;
 
 const FindGoods = styled.input`
-  width: ${searchWidth}px;
+  flex-grow: 1;
   height: 30px;
   border: 1px solid #1f1d1d;
   padding: 2px 2px 1px 6px;
@@ -27,6 +24,13 @@ const Find = styled.header`
   align-items: center;
   justify-content: space-around;
   height: 100px;
+  margin-bottom: 20px;
+`;
+
+const ControlWrapper = styled.section`
+  width: 80%;
+  display: flex;
+  max-width: 540px;
 `;
 
 export const SearchPanel: React.FunctionComponent = () => {
@@ -38,7 +42,7 @@ export const SearchPanel: React.FunctionComponent = () => {
 
   return (
     <Find>
-      <section>
+      <ControlWrapper>
         <FindGoods
           placeholder="find goods"
           value={value}
@@ -62,8 +66,10 @@ export const SearchPanel: React.FunctionComponent = () => {
         >
           Search
         </FindButton>
-      </section>
-      <DropdownButton />
+      </ControlWrapper>
+      <ControlWrapper>
+        <DropdownButton />
+      </ControlWrapper>
     </Find>
   );
 };

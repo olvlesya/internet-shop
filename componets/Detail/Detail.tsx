@@ -8,6 +8,7 @@ import {
   DetailPrice,
   DetailContent,
 } from "./styledComponents";
+import { SideLink } from "../common/Link";
 
 export const Detail: React.FunctionComponent<item> = ({
   category,
@@ -23,7 +24,7 @@ export const Detail: React.FunctionComponent<item> = ({
       </div>
       <DetailContent>
         <DetailTitle>{title}</DetailTitle>
-        <p>{category}</p>
+        <SideLink href={`category/${category}`}>{category}</SideLink>
         <DetailPrice>${price}</DetailPrice>
         <DetailInformation>
           <h3>Description</h3>

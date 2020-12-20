@@ -5,7 +5,7 @@ import { store } from "../.././types/store";
 import { sortAsc, sortDesc } from "../../store";
 
 const DropdownControl = styled.select`
-  width: 540px;
+  width: 100%;
   height: 30px;
   border: 1px solid #1f1d1d;
   padding: 2px 2px 1px 6px;
@@ -17,21 +17,19 @@ export const DropdownButton: React.FunctionComponent = () => {
   const dispatch = useDispatch();
 
   return (
-    <section>
-      <DropdownControl
-        value={sort}
-        onChange={(e) => {
-          if (e.target.value === "asc") {
-            dispatch(sortAsc());
-          }
-          if (e.target.value === "desc") {
-            dispatch(sortDesc());
-          }
-        }}
-      >
-        <option value="asc">Sort from low to high</option>
-        <option value="desc">Sort from high to low</option>
-      </DropdownControl>
-    </section>
+    <DropdownControl
+      value={sort}
+      onChange={(e) => {
+        if (e.target.value === "asc") {
+          dispatch(sortAsc());
+        }
+        if (e.target.value === "desc") {
+          dispatch(sortDesc());
+        }
+      }}
+    >
+      <option value="asc">Sort from low to high</option>
+      <option value="desc">Sort from high to low</option>
+    </DropdownControl>
   );
 };
