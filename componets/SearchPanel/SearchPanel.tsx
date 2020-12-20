@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 import { store } from "../../types/store";
 import { searchItems } from "../../store";
 import { ThemeLink } from "../common/ThemeLink";
@@ -28,12 +29,20 @@ export const SearchPanel: React.FunctionComponent = () => {
   );
   const [value, setValue] = useState(searchQuery);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   return (
     <Header>
       <Find>
         <SideTitle>
-          <HomePageLink href="/">All goods</HomePageLink>
+          <HomePageLink
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/");
+            }}
+          >
+            All goods
+          </HomePageLink>
         </SideTitle>
         <Controls>
           <ControlWrapper>
