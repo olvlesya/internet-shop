@@ -7,6 +7,7 @@ import {
   DetailInformation,
   DetailPrice,
   DetailContent,
+  DetailImageWrapper,
 } from "./styledComponents";
 import { ThemeLink } from "../common/ThemeLink";
 
@@ -19,9 +20,9 @@ export const Detail: React.FunctionComponent<item> = ({
 }) => {
   return (
     <DetailWrapper>
-      <div>
+      <DetailImageWrapper>
         <DetailImage src={image} />
-      </div>
+      </DetailImageWrapper>
       <DetailContent>
         <DetailTitle>{title}</DetailTitle>
         <section>
