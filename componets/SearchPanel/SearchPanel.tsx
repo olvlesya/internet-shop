@@ -32,6 +32,12 @@ export const SearchPanel: React.FunctionComponent = () => {
   const router = useRouter();
   const { category = "" } = router.query;
 
+  const navigateToSearch = (query = "") => {
+    dispatch(searchItems(query));
+    const categoryLink = category ? `category/${category}/` : "";
+    router.push(`/${categoryLink}`);
+  };
+
   return (
     <Header>
       <Find>
@@ -55,17 +61,17 @@ export const SearchPanel: React.FunctionComponent = () => {
               }}
               onKeyDown={(e) => {
                 if (e.key === "Escape") {
-                  dispatch(searchItems(""));
                   setValue("");
+                  navigateToSearch("");
                 }
                 if (e.key === "Enter") {
-                  dispatch(searchItems(value));
+                  navigateToSearch(value);
                 }
               }}
             ></FindGoods>
             <FindButton
               onClick={() => {
-                dispatch(searchItems(value));
+                navigateToSearch(value);
               }}
             >
               Search
