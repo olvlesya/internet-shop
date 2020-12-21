@@ -25,8 +25,18 @@ export const DetailWrapper = styled.article`
   display: flex;
   width: 80%;
   margin: auto;
-`;
 
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
+`;
+export const DetailImageWrapper = styled.div`
+  display: flex;
+  @media (max-width: 1024px) {
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+`;
 export const DetailInformation = styled.section`
   font-size: 18px;
 `;
@@ -42,4 +52,6 @@ export const DetailContent = styled.section`
   flex-direction: column;
   flex-grow: 1;
   padding-left: 40px;
+  @media (max-width: 1024px) {
+  }
 `;

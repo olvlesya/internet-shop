@@ -30,6 +30,7 @@ export const SearchPanel: React.FunctionComponent = () => {
   const [value, setValue] = useState(searchQuery);
   const dispatch = useDispatch();
   const router = useRouter();
+  const { category = "" } = router.query;
 
   return (
     <Header>
@@ -76,9 +77,16 @@ export const SearchPanel: React.FunctionComponent = () => {
         </Controls>
       </Find>
       <CategoryLinks>
-        {categories.map((category, id) => (
-          <CategoryLink key={id} href={category.route}>
-            {category.title}
+        {categories.map((siteCategory, id) => (
+          <CategoryLink
+            key={id}
+            active={
+              category.toString().toLowerCase() ===
+              siteCategory.title.toLowerCase()
+            }
+            href={siteCategory.route}
+          >
+            {siteCategory.title}
           </CategoryLink>
         ))}
       </CategoryLinks>
