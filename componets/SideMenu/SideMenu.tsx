@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import { ThemeLink } from "../common/ThemeLink";
 import { categories } from "../../routes";
@@ -26,13 +27,23 @@ const SideLinkSection = styled.div`
 `;
 
 export const SideMenu: React.FunctionComponent = () => {
+  const router = useRouter();
+  const { category = "" } = router.query;
+
   return (
     <SideWrapper>
       <SideCategories>Categories</SideCategories>
       <SideLinkSection>
-        {categories.map((category, id) => (
-          <ThemeLink key={id} href={category.route}>
-            {category.title}
+        {categories.map((siteCategory, id) => (
+          <ThemeLink
+            key={id}
+            active={
+              category.toString().toLowerCase() ===
+              siteCategory.title.toLowerCase()
+            }
+            href={siteCategory.route}
+          >
+            {siteCategory.title}
           </ThemeLink>
         ))}
       </SideLinkSection>
