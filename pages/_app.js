@@ -31,6 +31,10 @@ function MyApp({ Component, pageProps }) {
         <title>Internet shop</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta property="og:title" content="Internet shop" key="title" />
+        <meta
+          property="og:image"
+          content="/assets/images/site-preview.png"
+        ></meta>
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
