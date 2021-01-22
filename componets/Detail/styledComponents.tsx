@@ -55,3 +55,18 @@ export const DetailContent = styled.section`
   @media (max-width: 1024px) {
   }
 `;
+export const DetailAddCart = styled.button`
+  width: 400px;
+  height: 40px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #292929;
+  border: none;
+  border-radius: 0;
+  font-size: 1rem;
+  transition: background-color 300ms;
+
+  :hover {
+    background-color: #ff5d0d;
+  }
+`;

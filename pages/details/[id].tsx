@@ -1,28 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import { Spinner } from "../../componets/common/Spinner";
 import { Detail } from "../../componets/Detail";
 import { PageLayout } from "../../componets/common";
-import { item as itemType } from "../../types/item";
+import { useItemLoad } from "../../customHooks/useItemLoad";
 
 export default function Details() {
   const router = useRouter();
   const { id } = router.query;
-  const [item, setItem] = useState<itemType>();
-
-  useEffect(() => {
-    if (id) {
-      fetch(`https://fakestoreapi.com/products/${id}`)
-        .then((res) => res.json() as Promise<itemType>)
-        .then((json) => {
-          if (json === null) {
-            router.push(`/404`);
-          } else {
-            setItem(json);
-          }
-        });
-    }
-  }, [id]);
+  const item = useItemLoad(id as string);
 
   return <PageLayout>{item ? <Detail {...item} /> : <Spinner />}</PageLayout>;
 }

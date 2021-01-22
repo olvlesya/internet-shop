@@ -6,4 +6,11 @@ export type store = {
   isLoading: boolean;
   searchQuery: string;
   sort: "asc" | "desc";
+  cart: Record<
+    string,
+    {
+      count: number;
+      item: item;
+    }
+  >;
 };

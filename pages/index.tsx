@@ -3,10 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Spinner } from "../componets/common/Spinner";
 import { PageLayout } from "../componets/common";
-import { item } from "../types/item";
 import { store } from "../types/store";
-import { itemsInit, startLoading, stopLoading } from "../store";
 import { SearchResult } from "../componets/SearchResults";
+import { loadItems } from "../store";
 
 const LoadMoreButton = styled.button`
   padding: 8px;
@@ -40,31 +39,7 @@ export default function Home() {
   const [limit, setLimit] = useState(8);
 
   useEffect(() => {
-    dispatch(startLoading());
-    dispatch(itemsInit([]));
-
-    const limitQuery = searchQuery.trim() === "" ? `limit=${limit}` : "";
-
-    fetch(`https://fakestoreapi.com/products?${limitQuery}&sort=${sort}`)
-      .then((res) => res.json() as Promise<item[]>)
-      .then((json) => {
-        dispatch(stopLoading());
-
-        if (searchQuery.trim() !== "") {
-          const regExp = new RegExp(searchQuery, "i");
-          dispatch(
-            itemsInit(
-              // FIXME: fakestoreapi doesn't support filtering
-              json.filter(
-                (item) =>
-                  regExp.test(item.title) || regExp.test(item.description)
-              )
-            )
-          );
-        } else {
-          dispatch(itemsInit(json));
-        }
-      });
+    dispatch(loadItems(searchQuery, limit, sort));
   }, [sort, searchQuery, limit]);
 
   return (
