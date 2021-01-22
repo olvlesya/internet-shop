@@ -8,6 +8,7 @@ import {
   loadingReducer,
   searchQueryReducer,
   sortReducer,
+  cartReducer,
 } from "../store";
 import "../styles/index.css";
 
@@ -18,6 +19,7 @@ const store = createStore(
     isLoading: loadingReducer,
     searchQuery: searchQueryReducer,
     sort: sortReducer,
+    cart: cartReducer,
   }),
   applyMiddleware(thunk)
 );
@@ -29,6 +31,10 @@ function MyApp({ Component, pageProps }) {
         <title>Internet shop</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta property="og:title" content="Internet shop" key="title" />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        ></link>
       </Head>
       <Component {...pageProps} />
     </Provider>

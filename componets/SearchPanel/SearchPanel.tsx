@@ -6,6 +6,7 @@ import { store } from "../../types/store";
 import { searchItems } from "../../store";
 import { ThemeLink } from "../common/ThemeLink";
 import { DropdownButton } from "./DropdownButton";
+import { Cart } from "../Cart/Cart";
 import {
   ControlWrapper,
   Find,
@@ -81,6 +82,7 @@ export const SearchPanel: React.FunctionComponent = () => {
             <DropdownButton />
           </ControlWrapper>
         </Controls>
+        <Cart />
       </Find>
       <CategoryLinks>
         {categories.map((siteCategory, id) => (
