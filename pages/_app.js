@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }) {
         <meta property="og:title" content="Internet shop" key="title" />
         <meta
           property="og:image"
-          content="/assets/images/site-preview.png"
+          content="https://cdn.statically.io/gh/olvlesya/internet-shop/gh-pages/out/assets/images/site-preview.png"
         ></meta>
         <link
           rel="stylesheet"
