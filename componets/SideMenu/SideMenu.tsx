@@ -1,8 +1,8 @@
-import React from "react";
-import { useRouter } from "next/router";
-import styled from "styled-components";
-import { ThemeLink } from "../common/ThemeLink";
-import { categories } from "../../routes";
+import React from 'react';
+import { useRouter } from 'next/router';
+import styled from 'styled-components';
+import { ThemeLink } from '../common/ThemeLink';
+import { useCategoriesLoad } from '../../customHooks/useCategoriesLoad';
 
 const SideWrapper = styled.aside`
   display: flex;
@@ -28,7 +28,8 @@ const SideLinkSection = styled.div`
 
 export const SideMenu: React.FunctionComponent = () => {
   const router = useRouter();
-  const { category = "" } = router.query;
+  const { category = '' } = router.query;
+  const categories = useCategoriesLoad();
 
   return (
     <SideWrapper>
@@ -38,12 +39,11 @@ export const SideMenu: React.FunctionComponent = () => {
           <ThemeLink
             key={id}
             active={
-              category.toString().toLowerCase() ===
-              siteCategory.title.toLowerCase()
+              category.toString().toLowerCase() === siteCategory.toLowerCase()
             }
-            href={siteCategory.route}
+            href={`/category/${siteCategory}`}
           >
-            {siteCategory.title}
+            {siteCategory.charAt(0).toUpperCase() + siteCategory.slice(1)}
           </ThemeLink>
         ))}
       </SideLinkSection>

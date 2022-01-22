@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import { item as itemType } from "../types/item";
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { item as itemType } from '../types/item';
 
 export const useItemLoad = (id: string) => {
   const router = useRouter();
@@ -8,7 +8,7 @@ export const useItemLoad = (id: string) => {
 
   useEffect(() => {
     if (id) {
-      fetch(`https://fakestoreapi.com/products/${id}`)
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`)
         .then((res) => res.json() as Promise<itemType>)
         .then((json) => {
           if (json === null) {

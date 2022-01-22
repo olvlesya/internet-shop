@@ -1,8 +1,7 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { item } from "../../types/item";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { item } from '../../types/item';
 import {
-  DetailImage,
   DetailTitle,
   DetailWrapper,
   DetailInformation,
@@ -10,9 +9,10 @@ import {
   DetailContent,
   DetailImageWrapper,
   DetailAddCart,
-} from "./styledComponents";
-import { ThemeLink } from "../common/ThemeLink";
-import { cartAdd } from "../../store";
+} from './styledComponents';
+import { ThemeLink } from '../common/ThemeLink';
+import { cartAdd } from '../../store';
+import { ImageWrapper } from '../common/ImageWrapper';
 
 export const Detail: React.FunctionComponent<item> = ({
   id,
@@ -26,7 +26,7 @@ export const Detail: React.FunctionComponent<item> = ({
   return (
     <DetailWrapper>
       <DetailImageWrapper>
-        <DetailImage src={image} />
+        <ImageWrapper src={image} size="400px" />
       </DetailImageWrapper>
       <DetailContent>
         <DetailTitle>{title}</DetailTitle>

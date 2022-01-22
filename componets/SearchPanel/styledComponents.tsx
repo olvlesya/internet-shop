@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Button } from "./../common/Button";
+import styled from 'styled-components';
+import { Button } from './../common/Button';
 
 export const FindButton = styled(Button)`
   width: 75px;

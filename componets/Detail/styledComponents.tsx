@@ -1,17 +1,4 @@
-import styled from "styled-components";
-
-export const DetailImage = styled.img`
-  max-width: 400px;
-  max-height: 400px;
-  transition: transform 500ms;
-  border: 1px solid #00000033;
-  background-color: #fff;
-  cursor: pointer;
-
-  :hover {
-    transform: scale(1.05);
-  }
-`;
+import styled from 'styled-components';
 
 export const DetailTitle = styled.h1`
   font-size: 1.5rem;

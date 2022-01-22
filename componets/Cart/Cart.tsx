@@ -1,8 +1,9 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import styled from "styled-components";
-import { store } from "../../types/store";
-import { countSelector } from "./selectors";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+import styled from 'styled-components';
+import { store } from '../../types/store';
+import { countSelector } from './selectors';
 
 const CartCount = styled.span`
   font-size: 1rem;
@@ -21,10 +22,11 @@ const CardClickArea = styled.span`
 `;
 
 export const Cart: React.FC = () => {
+  const router = useRouter();
   const count = useSelector<store, number>(countSelector);
   return (
     <CartWrapper>
-      <CardClickArea>
+      <CardClickArea onClick={() => router.push('/cart')}>
         <i className="fas fa-shopping-cart" />
         <CartCount>{count}</CartCount>
       </CardClickArea>
